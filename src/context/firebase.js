@@ -1,7 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, set, ref } from "firebase/database";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { getDatabase, set, ref, get, child, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBqcr4W_g1NVoTN_8RCcSJD1Ztf1CA66Z4",
@@ -29,6 +33,21 @@ export const FirebaseProvider = (props) => {
 
   const putData = (key, data) => set(ref(database, key), data);
 
+  // get(child(ref(database), "grandfather/father")).then((snapshot) => {
+  //   console.log(snapshot.val());
+  // });
+
+  const [name, setname] = useState("");
+
+  useEffect(() => {
+    return () => {
+      onValue(ref(database, "grandfather/father/child"), (snapshot) => {
+        console.log(snapshot.val().name);
+        setname(snapshot.val().name);
+      });
+    };
+  }, []);
+
   const signInUser = async (email, password) => {
     return await signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((value) => {
@@ -44,6 +63,7 @@ export const FirebaseProvider = (props) => {
     <FirebaseContext.Provider
       value={{ signUpUserWithEmailAndPassword, putData, signInUser }}
     >
+      <h1>name is {name}</h1>
       {props.children}
     </FirebaseContext.Provider>
   );

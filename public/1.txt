@@ -33,3 +33,5 @@ https://firebase.google.com/docs/firestore/quickstart
 
 https://firebase.google.com/docs/firestore/query-data/queries
 
+---- 9. How to setup a firebase realtime database
+https://firebase.google.com/docs/database/web/read-and-write

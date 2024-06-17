@@ -20,8 +20,10 @@ import {
   query,
   where,
   getDocs,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
+
+import { useFirebase } from "./context/firebase";
 
 // const db = getDatabase(app);
 const auth = getAuth(app);
@@ -85,9 +87,19 @@ function App() {
   const update = async () => {
     const docRef = doc(firestore, "cities", "isOguMluvmmgf1rz0WGv");
     await updateDoc(docRef, {
-      name: 'New Delhi',
-    })
-  }
+      name: "New Delhi",
+    });
+  };
+
+  const firebase = useFirebase();
+
+  const putDataNew = () => {
+    firebase.putData("grandfather/father/child", {
+      id: 1,
+      name: "kirthan",
+      age: 21,
+    });
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -120,6 +132,7 @@ function App() {
       <button onClick={getDocument}>get doc</button>
       <button onClick={getDocumentsByQuery}>getDocumentsByQuery</button>
       <button onClick={update}>update</button>
+      <button onClick={putDataNew}>trigger</button>
 
       <button onClick={() => signOut(auth)}>Logout</button>
     </div>
