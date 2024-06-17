@@ -1,5 +1,9 @@
 // import { getDatabase, ref, set } from "firebase/database";
-import { createUserWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signOut,
+} from "firebase/auth";
 import { app } from "./firebase";
 import "./App.css";
 import SignUp from "./components/SignUp";
@@ -7,8 +11,22 @@ import SignIn from "./components/SignIn";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+  updateDoc
+} from "firebase/firestore";
+
 // const db = getDatabase(app);
 const auth = getAuth(app);
+
+const firestore = getFirestore(app);
 
 function App() {
   // const putData = () => {
@@ -30,6 +48,46 @@ function App() {
   // };
 
   const [user, setUser] = useState(null);
+
+  const writeData = async () => {
+    const result = await addDoc(collection(firestore, "cities"), {
+      name: "Delhi",
+      pinCode: 1234,
+      lat: 123,
+      lon: 456,
+    });
+
+    console.log("Result: ", result);
+  };
+
+  const makeSubCollection = async () => {
+    await addDoc(collection(firestore, "cities/isOguMluvmmgf1rz0WGv/place"), {
+      name: "This is a place 2",
+      desc: "Awsome",
+      date: Date.now(),
+    });
+  };
+
+  const getDocument = async () => {
+    const ref = doc(firestore, "cities", "isOguMluvmmgf1rz0WGv");
+    const snap = await getDoc(ref);
+
+    console.log(snap.data());
+  };
+
+  const getDocumentsByQuery = async () => {
+    const collectionref = collection(firestore, "users");
+    const q = query(collectionref, where("isMale", "==", "true"));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((data) => console.log(data.data()));
+  };
+
+  const update = async () => {
+    const docRef = doc(firestore, "cities", "isOguMluvmmgf1rz0WGv");
+    await updateDoc(docRef, {
+      name: 'New Delhi',
+    })
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -57,6 +115,12 @@ function App() {
   return (
     <div className="App">
       <h1>Hello {user.email}</h1>
+      <button onClick={writeData}>Put Data</button>
+      <button onClick={makeSubCollection}>Put Sub Data</button>
+      <button onClick={getDocument}>get doc</button>
+      <button onClick={getDocumentsByQuery}>getDocumentsByQuery</button>
+      <button onClick={update}>update</button>
+
       <button onClick={() => signOut(auth)}>Logout</button>
     </div>
   );
