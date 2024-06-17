@@ -10,3 +10,8 @@ https://firebase.google.com/docs/database/web/read-and-write
 ---- 3. Authentication in Firebase
 https://console.firebase.google.com/u/0/project/app-ed7d9/authentication/providers
 https://firebase.google.com/docs/auth/web/start
+
+---- 4. Login with firebase and React
+signup --> create account
+signin --> Login
+https://firebase.google.com/docs/auth/web/start

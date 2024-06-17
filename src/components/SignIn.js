@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../firebase";
 const auth = getAuth(app);
 
-function SignUp() {
+function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signupUser = () => {
-    createUserWithEmailAndPassword(auth, email, password).then((value) => {
-      console.log(value);
-      alert("success");
-    });
+  const signinUser = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((value) => {
+        console.log(value);
+        alert("success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div className="signup-page">
-      <h1>SignUp page</h1>
-
+      <h1>SignIn page</h1>
       <label htmlFor="">Email</label>
       <input
         onChange={(e) => setEmail(e.target.value)}
@@ -39,9 +42,9 @@ function SignUp() {
         required
         placeholder="Enter password"
       />
-      <button onClick={signupUser}>SignUp</button>
+      <button onClick={signinUser}>SignUp</button>
     </div>
   );
 }
 
-export default SignUp;
+export default SignIn;

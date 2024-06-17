@@ -3,6 +3,8 @@
 // import { app } from "./firebase";
 import "./App.css";
 import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+
 
 // const db = getDatabase(app);
 // const auth = getAuth(app);
@@ -28,10 +30,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Firebase React App</h1>
+      {/* <h1>Firebase React App</h1> */}
       {/* <button onClick={putData}>Put Data</button> */}
       {/* <button onClick={signupUser}>Create User</button> */}
-      <SignUp/>
+      <SignUp />
+      <SignIn />
     </div>
   );
 }
