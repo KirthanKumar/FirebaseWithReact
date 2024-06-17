@@ -1,0 +1,8 @@
+https://www.youtube.com/watch?v=-d5OHgw34g4&list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C
+
+---- 2. How to Set Up A React and Firebase Project
+first create a firebase project and then go to project overview page and follow steps
+create a real-time database in test mode.
+
+documentation: https://firebase.google.com/docs/database/web/start
+https://firebase.google.com/docs/database/web/read-and-write
