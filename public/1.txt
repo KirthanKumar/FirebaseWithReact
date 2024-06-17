@@ -15,3 +15,5 @@ https://firebase.google.com/docs/auth/web/start
 signup --> create account
 signin --> Login
 https://firebase.google.com/docs/auth/web/start
+
+---- 5. Correct way of using Firebase in ReactJs application using context API
