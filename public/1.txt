@@ -21,3 +21,5 @@ https://firebase.google.com/docs/auth/web/start
 ---- 6. Firebase google authentication React
 https://console.firebase.google.com/u/0/project/app-ed7d9/authentication/providers
 
+---- 7. Getting Logged in user in firebase 
+https://firebase.google.com/docs/auth/web/start
