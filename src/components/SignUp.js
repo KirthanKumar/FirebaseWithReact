@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../firebase";
 import { useFirebase } from "../context/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+const googleprovider = new GoogleAuthProvider();
 
 const auth = getAuth(app);
 
@@ -14,7 +17,11 @@ function SignUp() {
   //       console.log(value);
   //       alert("success");
   //     });
-  //   };
+    //   };
+    
+    const signUpWithGoogle = () => {
+        signInWithPopup(auth, googleprovider)
+    }
 
   const firebaseCon = useFirebase();
   //   console.log(firebaseCon);
@@ -52,6 +59,9 @@ function SignUp() {
       >
         SignUp
       </button>
+
+      <br />
+      <button onClick={signUpWithGoogle}>Sign Up with google</button>
     </div>
   );
 }

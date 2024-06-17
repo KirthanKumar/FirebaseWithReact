@@ -17,3 +17,7 @@ signin --> Login
 https://firebase.google.com/docs/auth/web/start
 
 ---- 5. Correct way of using Firebase in ReactJs application using context API
+
+---- 6. Firebase google authentication React
+https://console.firebase.google.com/u/0/project/app-ed7d9/authentication/providers
+
