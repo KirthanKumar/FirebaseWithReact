@@ -6,3 +6,7 @@ create a real-time database in test mode.
 
 documentation: https://firebase.google.com/docs/database/web/start
 https://firebase.google.com/docs/database/web/read-and-write
+
+---- 3. Authentication in Firebase
+https://console.firebase.google.com/u/0/project/app-ed7d9/authentication/providers
+https://firebase.google.com/docs/auth/web/start
